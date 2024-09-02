@@ -1,0 +1,11 @@
+.swiper-wrapper {
+  padding-block: 70px;
+}
+
+.swiper-pagination-bullet {
+  background-color: #74b3ce;
+}
+
+.swiper-slide {
+  display: flex !important;
+}

@@ -1,0 +1,116 @@
+"use client";
+import React from "react";
+import { DataTable } from "primereact/datatable";
+import { Column, ColumnEditorOptions } from "primereact/column";
+import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import Link from "next/link";
+import { Plus, Trash } from "lucide-react";
+import {
+  editFeature,
+  removeFeatureById,
+} from "@/redux/actions/homepage/featuresAction"; // Import feature actions
+import { Icon } from "@iconify/react/dist/iconify.js";
+type Props = {};
+
+const Features = (props: Props) => {
+  const dispatch = useAppDispatch();
+  const { features } = useAppSelector((state) => state.features); // Select features from the state
+  const textEditor = (options: ColumnEditorOptions) => {
+    return (
+      <InputText
+        type="text"
+        value={options.value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          options.editorCallback!(e.target.value)
+        }
+      />
+    );
+  };
+
+  const textAreaEditor = (options: ColumnEditorOptions) => {
+    return (
+      <InputTextarea
+        style={{ width: "100%" }}
+        value={options.value}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          options.editorCallback!(e.target.value)
+        }
+      />
+    );
+  };
+
+  const deleteElement = (e: any) => {
+    return (
+      <button onClick={(_) => dispatch(removeFeatureById(e._id))}>
+        <Trash />
+      </button>
+    );
+  };
+
+  const iconElement = (e: any) => {
+    return (
+      <div className="flex">
+        <Icon icon={e.icon} width={35} color={e.color} />
+      </div>
+    );
+  };
+
+  const onRowEditComplete = (e: any) => {
+    dispatch(editFeature(e.newData));
+  };
+
+  return (
+    <div>
+      <div className="flex justify-end mb-5">
+        <Link
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          href={"/dashboard/features/add"} // Adjust the link to the add feature page
+        >
+          <Plus />
+        </Link>
+      </div>
+      <DataTable
+        stripedRows
+        value={features}
+        paginator
+        editMode="row"
+        dataKey="_id"
+        rows={5}
+        rowsPerPageOptions={[5, 10, 25, 50]}
+        tableStyle={{ minWidth: "50rem" }}
+        onRowEditComplete={onRowEditComplete}
+      >
+        <Column
+          field="color"
+          header="Couleur"
+          style={{ width: "25%" }}
+          editor={(options) => textEditor(options)}
+        ></Column>
+        <Column
+          field="text"
+          header="Text"
+          editor={(options) => textAreaEditor(options)}
+          style={{ width: "50%" }}
+        ></Column>
+        <Column
+          field="icon"
+          body={iconElement}
+          editor={(options) => textEditor(options)}
+          header="Icon"
+          style={{ width: "10%" }}
+        ></Column>
+        <Column
+          header="Action"
+          rowEditor={true}
+          headerStyle={{ width: "10%", minWidth: "8rem" }}
+          bodyStyle={{ textAlign: "center" }}
+        ></Column>
+        <Column header="Delete" body={deleteElement}></Column>
+      </DataTable>
+    </div>
+  );
+};
+
+export default Features;

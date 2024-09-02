@@ -1,0 +1,12 @@
+.td-figure {
+  perspective: 400px;
+  overflow: hidden;
+  padding-block: 40px;
+  padding-left: 45px;
+}
+
+.td-figure img {
+  transform: rotateX(0.5deg) rotateY(-2deg) rotateZ(10deg) skewY(-4deg);
+  border-radius: 0.175em;
+  transition: 0.3s;
+}

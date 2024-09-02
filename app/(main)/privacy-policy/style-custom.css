@@ -1,0 +1,81 @@
+/* Title styling */
+.privacy .title {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Main headings */
+.privacy h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Subheadings */
+.privacy h2 {
+  font-size: 1.75em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Smaller subheadings */
+.privacy h3 {
+  font-size: 1.5em;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.privacy h4 {
+  font-weight: 600;
+}
+
+/* Paragraph styling */
+.privacy p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  text-indent: 20px;
+}
+
+/* List styling */
+.privacy ul {
+  margin-left: 40px;
+  margin-bottom: 20px;
+  list-style-type: disc;
+}
+
+ul.group {
+  margin-bottom: 0;
+}
+
+.privacy ul li {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.privacy ul.group li {
+  margin-bottom: 0;
+}
+
+/* Links */
+.privacy a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.privacy a:hover {
+  text-decoration: underline;
+}
+
+a.transition-opacity:hover {
+  text-decoration: none;
+}
+
+.privacy p.text-center {
+  margin-bottom: 0;
+}
